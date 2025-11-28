@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import Icon from '../../../components/AppIcon';
 import Image from '../../../components/AppImage';
 import Button from '../../../components/ui/Button';
 
 const HeroSection = () => {
   const [currentDataPoint, setCurrentDataPoint] = useState(0);
+  const reduceMotion = useReducedMotion();
   
   const dataPoints = [
     "15+ Projects Completed",
@@ -31,21 +32,27 @@ const HeroSection = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] });
+  const bgTranslateY = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const shapeRotate = useTransform(scrollYProgress, [0, 1], [0, 45]);
+  const titleGlow = useTransform(scrollYProgress, [0, 1], [0.3, 0.7]);
+
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 overflow-hidden">
       {/* Animated Background Elements */}
-      <div className="absolute inset-0 opacity-20">
+      <motion.div className="absolute inset-0 opacity-20" style={{ y: bgTranslateY }}>
         {floatingElements?.map((element, index) => (
           <motion.div
             key={index}
             className={`absolute ${element?.color}`}
             style={{ left: `${element?.x}%`, top: `${element?.y}%` }}
-            animate={{
+            animate={reduceMotion ? undefined : {
               y: [0, -25, 0],
               rotate: [0, 10, -10, 0],
               scale: [1, 1.2, 1]
             }}
-            transition={{
+            transition={reduceMotion ? undefined : {
               duration: 4 + index * 0.5,
               delay: element?.delay,
               repeat: Infinity,
@@ -55,23 +62,24 @@ const HeroSection = () => {
             <Icon name={element?.icon} size={36} />
           </motion.div>
         ))}
-      </div>
+      </motion.div>
       {/* Colorful Geometric Shapes */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 
           className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-20"
-          animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
-          transition={{ duration: 8, repeat: Infinity }}
+          style={{ rotate: shapeRotate }}
+          animate={reduceMotion ? undefined : { scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
+          transition={reduceMotion ? undefined : { duration: 8, repeat: Infinity }}
         />
         <motion.div 
           className="absolute bottom-20 right-10 w-24 h-24 bg-gradient-to-r from-blue-400 to-green-400 rounded-full opacity-20"
-          animate={{ scale: [1.2, 1, 1.2], rotate: [360, 180, 0] }}
-          transition={{ duration: 6, repeat: Infinity }}
+          animate={reduceMotion ? undefined : { scale: [1.2, 1, 1.2], rotate: [360, 180, 0] }}
+          transition={reduceMotion ? undefined : { duration: 6, repeat: Infinity }}
         />
         <motion.div 
           className="absolute top-1/2 left-1/4 w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full opacity-20"
-          animate={{ y: [0, -30, 0], x: [0, 20, 0] }}
-          transition={{ duration: 5, repeat: Infinity }}
+          animate={reduceMotion ? undefined : { y: [0, -30, 0], x: [0, 20, 0] }}
+          transition={reduceMotion ? undefined : { duration: 5, repeat: Infinity }}
         />
       </div>
       {/* Main Content */}
@@ -105,14 +113,15 @@ const HeroSection = () => {
             >
               <motion.div 
                 className="text-6xl lg:text-8xl font-bold text-gradient-rainbow leading-none"
-                animate={{ 
+                style={{ filter: `drop-shadow(0 0 ${titleGlow.get()}rem rgba(99,102,241,0.4))` }}
+                animate={reduceMotion ? undefined : { 
                   textShadow: [
                     "0 0 20px rgba(99, 102, 241, 0.3)",
                     "0 0 40px rgba(236, 72, 153, 0.4)",
                     "0 0 20px rgba(99, 102, 241, 0.3)"
                   ]
                 }}
-                transition={{ duration: 3, repeat: Infinity }}
+                transition={reduceMotion ? undefined : { duration: 3, repeat: Infinity }}
               >
               Saniya Dhada
               </motion.div>
@@ -136,8 +145,8 @@ const HeroSection = () => {
                 Transforming Data into{' '}
                 <motion.span 
                   className="text-gradient"
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
+                  animate={reduceMotion ? undefined : { scale: [1, 1.05, 1] }}
+                  transition={reduceMotion ? undefined : { duration: 2, repeat: Infinity }}
                 >
                   Decisions
                 </motion.span>
@@ -253,23 +262,25 @@ const HeroSection = () => {
             <div className="relative max-w-md mx-auto">
               <motion.div 
                 className="absolute -inset-6 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 rounded-3xl opacity-30 blur-2xl"
-                animate={{ rotate: [0, 5, -5, 0] }}
-                transition={{ duration: 8, repeat: Infinity }}
+                animate={reduceMotion ? undefined : { rotate: [0, 5, -5, 0] }}
+                transition={reduceMotion ? undefined : { duration: 8, repeat: Infinity }}
               ></motion.div>
               
               <motion.div 
                 className="relative bg-white rounded-3xl p-8 shadow-2xl border border-purple-100"
                 whileHover={{ scale: 1.02 }}
-                animate={{ y: [0, -5, 0] }}
-                transition={{ y: { duration: 4, repeat: Infinity } }}
+                animate={reduceMotion ? undefined : { y: [0, -5, 0] }}
+                transition={reduceMotion ? undefined : { y: { duration: 4, repeat: Infinity } }}
               >
                 <div className="aspect-[3/4] overflow-hidden rounded-2xl">
-                  {/* 👇 Custom Profile Photo */}
+                  
                   <Image 
-                     src="/assets/images/img1.png"
-                     alt="My Profile Photo"
-                     className="w-full h-full object-cover"
-                />
+                    src="/assets/images/img1.png"
+                    alt="My Profile Photo"
+                    className="w-full h-full object-cover"
+                    loading="eager"
+                    fetchpriority="high"
+                  />
 
                 </div>
                 
@@ -305,14 +316,14 @@ const HeroSection = () => {
       {/* Scroll Indicator */}
       <motion.div 
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        animate={{ y: [0, 15, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
+        animate={reduceMotion ? undefined : { y: [0, 15, 0] }}
+        transition={reduceMotion ? undefined : { duration: 2, repeat: Infinity }}
       >
         <div className="flex flex-col items-center space-y-3 text-purple-600">
           <span className="text-sm font-semibold">Explore More</span>
           <motion.div
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            animate={reduceMotion ? undefined : { scale: [1, 1.2, 1] }}
+            transition={reduceMotion ? undefined : { duration: 2, repeat: Infinity }}
           >
             <Icon name="ChevronDown" size={24} />
           </motion.div>

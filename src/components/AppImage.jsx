@@ -4,14 +4,19 @@ function Image({
   src,
   alt = "Image Name",
   className = "",
+  loading = "lazy",
+  decoding = "async",
+  fetchpriority,
   ...props
 }) {
-
   return (
     <img
       src={src}
       alt={alt}
       className={className}
+      loading={loading}
+      decoding={decoding}
+      fetchpriority={fetchpriority}
       onError={(e) => {
         e.target.src = "/assets/images/no_image.png"
       }}

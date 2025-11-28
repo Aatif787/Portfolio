@@ -233,6 +233,94 @@ const ProjectCaseStudiesPortfolio = () => {
         }
       ]
     }
+    ,
+    {
+      id: 7,
+      title: "DocMeet - Online Doctor Appointment Platform",
+      category: "Full-Stack",
+      industry: "Healthcare",
+      description: "Full-stack appointment system for clinics and patients with role-based dashboards, real-time scheduling, and automated reminders.",
+      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=400&fit=crop",
+      technologies: ["React", "Node.js", "Express", "MongoDB", "JWT", "Socket.io"],
+      metrics: [
+        "Reduced scheduling time by 60%",
+        "Decreased no-shows by 25%",
+        "Improved patient satisfaction by 35%",
+        "1,000+ bookings per month"
+      ],
+      status: "Completed",
+      duration: "8 weeks",
+      githubUrl: "https://github.com/saniya/docmeet",
+      liveUrl: null,
+      featured: false,
+      challenge: `Clinics relied on phone calls and spreadsheets, leading to scheduling conflicts, lost information, and high administrative overhead. Patients struggled with limited booking hours and poor visibility of doctor availability.`,
+      solution: `Designed and implemented a responsive platform where patients browse doctors by specialty, check live availability, book slots, and receive automated reminders. Built staff and doctor dashboards with role-based access, audit logs, and secure records management.`,
+      implementation: `• React frontend with reusable components and accessibility\n• Node.js/Express REST API with JWT auth and RBAC\n• MongoDB schema for doctors, patients, appointments, and notifications\n• Socket.io for real-time slot updates and admin broadcasting\n• Cron-based email/SMS reminders with configurable templates\n• Deployment with Docker and environment-based configuration`,
+      outcomes: `The platform streamlined booking across clinics, reduced administrative work, and significantly improved patient experience. Automated reminders lowered no-shows and doctors gained better visibility into schedules and workload.`,
+      lessonsLearned: `Healthcare workflows benefit from clarity and reliability. Building resilient scheduling and notification systems required careful attention to edge cases, timezone handling, and user experience under load.`,
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop", caption: "Doctor availability and booking" },
+        { url: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=300&fit=crop", caption: "Appointment dashboard" }
+      ]
+    },
+    {
+      id: 8,
+      title: "HR Analytics Dashboard",
+      category: "Data Analytics",
+      industry: "Technology",
+      description: "Developed an HR analytics dashboard using Power BI, SQL, and Excel to consolidate data from 1,000+ employee records.",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+      technologies: ["Power BI", "SQL", "Excel", "Python"],
+      metrics: [
+        "Achieved 85% accuracy in predictive models",
+        "Reduced manual processing time by 50%",
+        "Improved decision-making efficiency by 30%",
+        "Unified 1,000+ employee records"
+      ],
+      status: "Completed",
+      duration: "6 weeks",
+      githubUrl: "https://github.com/saniya/hr-analytics-dashboard",
+      liveUrl: null,
+      featured: false,
+      challenge: `HR data was scattered across spreadsheets and siloed systems, making it difficult to analyze attrition, performance, and hiring trends. Manual reporting took hours and insights arrived too late for decisions.`,
+      solution: `Built an ETL process to consolidate records into SQL, automated data quality checks, and designed Power BI dashboards for attrition risk, performance distribution, hiring pipeline health, and diversity metrics.`,
+      implementation: `• SQL-based warehouse schema for employees, roles, compensation, and performance\n• Excel connectors and scheduled imports with validation\n• Power BI dashboards with drill-through and row-level security\n• Predictive models for attrition and performance using Python\n• KPI cards, interactive filters, and executive summary reports`,
+      outcomes: `HR teams reduced manual reporting by half and used accurate predictive signals to plan interventions. Leaders saw clearer trends and made faster, data-backed decisions.`,
+      lessonsLearned: `Balancing usability with rigor is key. Data freshness, security, and trust in metrics matter as much as model accuracy.`,
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?w=400&h=300&fit=crop", caption: "Attrition risk overview" },
+        { url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop", caption: "Power BI dashboard tiles" }
+      ]
+    },
+    {
+      id: 9,
+      title: "DataHorizon with AI - Full-Stack Data Analysis",
+      category: "Full-Stack",
+      industry: "Technology",
+      description: "End-to-end platform that unifies data ingestion, AI model training, and real-time visualization for business users.",
+      image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&h=400&fit=crop",
+      technologies: ["React", "FastAPI", "PostgreSQL", "TensorFlow", "Docker", "Redis"],
+      metrics: [
+        "2× faster analytics cycles",
+        "90% forecast accuracy",
+        "Real-time dashboards and alerting",
+        "Reusable pipelines with feature store"
+      ],
+      status: "Completed",
+      duration: "3 months",
+      githubUrl: "https://github.com/saniya/datahorizon-ai",
+      liveUrl: null,
+      featured: false,
+      challenge: `Multiple teams maintained separate pipelines and manual reports, causing delays and inconsistent metrics across the organization.`,
+      solution: `Standardized ingestion, centralized model training and registry, and built dashboards with role-based views. Added alerting and batch/stream processing to support near real-time insights.`,
+      implementation: `• FastAPI microservices for ingestion and serving\n• PostgreSQL warehouse with dimensional models\n• TensorFlow training jobs with experiment tracking\n• React dashboards with component library and charts\n• Docker-based deployments and CI/CD\n• Redis caching and background workers for throughput`,
+      outcomes: `Teams cut analysis time in half and gained consistent KPIs. Forecasting models supported planning with high accuracy, and dashboards provided timely insight for decisions.`,
+      lessonsLearned: `Good developer ergonomics speed delivery. Investing in component libraries, pipeline templates, and observability pays dividends.`,
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop", caption: "Unified analytics overview" },
+        { url: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&h=300&fit=crop", caption: "Forecast visualization" }
+      ]
+    }
   ];
 
   // Filter projects based on active filters
